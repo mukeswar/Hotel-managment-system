@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { API_BASE_URL } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { Contexts } from '../../ContextUser/Contexts';
 import './Login.scss';
@@ -28,7 +29,7 @@ const index = () => {
         setLoginLoading(true);
 
         try {
-            const res = await axios.post('http://localhost:5001/api/user/login', inpVal);
+            const res = await axios.post(`${API_BASE_URL}/user/login`, inpVal);
 
             console.log(res.data.message.details);
             localStorage.setItem('user', JSON.stringify(res.data.message.details.username));
