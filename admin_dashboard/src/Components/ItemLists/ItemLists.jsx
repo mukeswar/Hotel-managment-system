@@ -4,6 +4,7 @@ import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStore
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/api';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
@@ -19,9 +20,9 @@ function ItemLists({ type }) {
    is used to fetch data from three different API endpoints with the response data. */
     useEffect(() => {
         const datass = async () => {
-            const res = await axios.get('https://rooms-backend.onrender.com/api/hotels');
-            const res2 = await axios.get('https://rooms-backend.onrender.com/api/blogs');
-            const res3 = await axios.get('https://rooms-backend.onrender.com/api/users');
+            const res = await axios.get(`${API_BASE_URL}/hotels`);
+            const res2 = await axios.get(`${API_BASE_URL}/blogs`);
+            const res3 = await axios.get(`${API_BASE_URL}/users`);
             setHotelData(res.data.message);
             setBlogData(res2.data.message);
             setUserData(res3.data.message);

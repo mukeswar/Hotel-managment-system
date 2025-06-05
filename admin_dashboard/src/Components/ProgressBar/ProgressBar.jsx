@@ -8,6 +8,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import './progressBar.scss';
 
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/api';
 import { Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 function ProgressBar() {
@@ -21,10 +22,10 @@ function ProgressBar() {
    (`userData`, `hotelData`, `blogData`, `roomData`) with the received data. */
     useEffect(() => {
         const datass = async () => {
-            const res = await axios.get('https://rooms-backend.onrender.com/api/rooms');
-            const res2 = await axios.get('https://rooms-backend.onrender.com/api/blogs');
-            const res3 = await axios.get('https://rooms-backend.onrender.com/api/users');
-            const res4 = await axios.get('https://rooms-backend.onrender.com/api/rooms');
+            const res = await axios.get(`${API_BASE_URL}/rooms`);
+            const res2 = await axios.get(`${API_BASE_URL}/blogs`);
+            const res3 = await axios.get(`${API_BASE_URL}/users`);
+            const res4 = await axios.get(`${API_BASE_URL}/rooms`);
             setHotelData(res.data.message);
             setBlogData(res2.data.message);
             setUserData(res3.data.message);

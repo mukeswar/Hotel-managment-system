@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Chart from '../../Components/Chart/Chart';
@@ -21,7 +22,7 @@ function Detail() {
     useEffect(() => {
         setLoading(true);
         const fetchData = async () => {
-            const data = await axios.get(`https://rooms-backend.onrender.com/api/user/${path}`);
+            const data = await axios.get(`${API_BASE_URL}/user/${path}`);
             setUserData(data.data.message);
         };
         fetchData();

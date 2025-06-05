@@ -97,6 +97,7 @@
 // }
 
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/api';
 import Head from 'next/head';
 import BlogComponent from '../components/BlogComponent/BlogComponent';
 import Features from '../components/Features/Features';
@@ -143,7 +144,7 @@ export async function getStaticProps() {
 
   try {
     const response = await axios.get(
-      'https://rooms-backend.onrender.com/api/hotels/getHotelByCity?cities=berlin,tokyo,dubai'
+      `${API_BASE_URL}/hotels/getHotelByCity?cities=berlin,tokyo,dubai`
     );
     propertyList = response.data.message || [];
   } catch (error) {
@@ -153,7 +154,7 @@ export async function getStaticProps() {
 
   try {
     const response2 = await axios.get(
-      'https://rooms-backend.onrender.com/api/hotels/getHotelByType'
+      `${API_BASE_URL}/hotels/getHotelByType`
     );
     propertyList2 = response2.data.message || [];
   } catch (error) {
@@ -162,7 +163,7 @@ export async function getStaticProps() {
 
   try {
     const response3 = await axios.get(
-      'https://rooms-backend.onrender.com/api/hotels?featured=true&limit=4'
+      `${API_BASE_URL}/hotels?featured=true&limit=4`
     );
     homesDetails = response3.data.message || [];
   } catch (error) {
@@ -170,7 +171,7 @@ export async function getStaticProps() {
   }
 
   try {
-    const res = await axios.get('https://rooms-backend.onrender.com/api/blogs');
+    const res = await axios.get(`${API_BASE_URL}/blogs`);
     blogss = res.data.message || [];
   } catch (error) {
     console.error('Error fetching blogs:', error.message);

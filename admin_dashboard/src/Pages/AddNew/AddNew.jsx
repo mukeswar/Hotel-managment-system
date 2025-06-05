@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../Components/Input/Input';
@@ -79,7 +80,7 @@ function AddNew({ inputs, title, type }) {
             }
 
             await axios.post(
-                `https://rooms-backend.onrender.com/api/${
+                `${API_BASE_URL}/${
                     type === 'USER' ? 'user/signup' : 'blog/create'
                 }`,
                 userInp

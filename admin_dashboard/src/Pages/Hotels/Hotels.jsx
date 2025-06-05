@@ -2,6 +2,7 @@
 /* eslint-disable no-nested-ternary */
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -82,7 +83,7 @@ function Hotels({ type }) {
    effect is triggered when the `data` state variable changes. */
     useEffect(() => {
         const datass = async () => {
-            const res = await axios.get('https://rooms-backend.onrender.com/api/hotels');
+            const res = await axios.get(`${API_BASE_URL}/hotels`);
             setData(res.data.message);
         };
         datass();
@@ -94,7 +95,7 @@ function Hotels({ type }) {
      */
     const handleDlt = (id) => {
         try {
-            axios.delete(`https://rooms-backend.onrender.com/api/${path}/${id}`);
+            axios.delete(`${API_BASE_URL}/${path}/${id}`);
             setData(data.filter((item) => item.id !== id));
             console.log(`deleted user ${id}`);
         } catch (error) {
