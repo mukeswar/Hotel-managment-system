@@ -3,6 +3,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../Components/Input/Input';
 import Navbar from '../../Components/Navbar/Navbar';
@@ -24,11 +25,11 @@ function AddRoom({ inputs, title, type }) {
     const nevigate = useNavigate();
 
     /* The `useEffect` hook is used to perform side effects in a functional component. In this case, it
-   is used to fetch data from the API endpoint `'https://rooms-backend.onrender.com/api/hotels'` and
+   is used to fetch data from the API endpoint and
    update the state variables `roomData` with the response data. */
     useEffect(() => {
         const roomsss = async () => {
-            const hotel = await axios.get('https://rooms-backend.onrender.com/api/hotels');
+            const hotel = await axios.get(`${API_BASE_URL}/hotels`);
             setRoomData(hotel.data.message);
         };
         roomsss();
@@ -54,7 +55,7 @@ function AddRoom({ inputs, title, type }) {
         try {
             setLoading(true);
 
-            await axios.post(`https://rooms-backend.onrender.com/api/room/${hotelId}`, datas);
+            await axios.post(`${API_BASE_URL}/room/${hotelId}`, datas);
 
             setLoading(false);
             nevigate(`/rooms`);

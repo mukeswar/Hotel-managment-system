@@ -11,6 +11,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 // import required modules
 import axios from 'axios';
+import { API_BASE_URL } from '../../utils/api';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -238,7 +239,7 @@ export default hotelDetails;
 // hotel's ID. The "fallback" property is set to false, indicating that any paths not returned in the
 // "paths" array will result in a 404 page.
 export async function getStaticPaths() {
-    const response = await axios.get(`https://rooms-backend.onrender.com/api/hotels`);
+    const response = await axios.get(`${API_BASE_URL}/hotels`);
     const data = await response.data.message;
 
     const paths = data.map((item) => ({
@@ -259,8 +260,8 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
     // api route
     const { params } = context;
-    const res = await axios.get(`https://rooms-backend.onrender.com/api/hotel/${params.hotel}`);
-    const res2 = await axios.get(`https://rooms-backend.onrender.com/api/rooms/${params.hotel}`);
+    const res = await axios.get(`${API_BASE_URL}/hotel/${params.hotel}`);
+    const res2 = await axios.get(`${API_BASE_URL}/rooms/${params.hotel}`);
 
     const data = await res.data.message;
     const data2 = await res2.data.message;

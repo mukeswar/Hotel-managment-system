@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/api';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import noImage from '../../Images/user.png';
@@ -17,7 +18,7 @@ function DataTable() {
 data. */
     useEffect(() => {
         const dataCall = async () => {
-            const res = await axios.get(`https://rooms-backend.onrender.com/api/${path}`);
+            const res = await axios.get(`${API_BASE_URL}/${path}`);
             setData(res.data.message.slice(1));
         };
         dataCall();
@@ -29,7 +30,7 @@ data. */
      */
     const handleDlt = async (id) => {
         try {
-            axios.delete(`https://rooms-backend.onrender.com/api/${path}/${id}`);
+            axios.delete(`${API_BASE_URL}/${path}/${id}`);
             setData(data.filter((item) => item.id !== id));
         } catch (error) {
             console.log(error);
